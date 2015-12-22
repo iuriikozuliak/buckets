@@ -26,8 +26,12 @@ module.exports = class FieldTypeInputView extends View
     $preview = @$('.preview')
     $progress = @$('.progress')
     $progressBar = @$('.progress-bar')
-
+    value = @model.get('value')
     @$input = $input = @$("input[type=file]")
+
+    if value then $input.data 'value-object', value
+
+    @$input
       .cloudinary_fileupload
         dropzone: @$('.dropzone')
       .bind 'fileuploadstart', (e) ->
